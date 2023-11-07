@@ -19,14 +19,14 @@ st.title("Gold Price Prediction App")
 
 # Input: User-provided future date
 user_date = st.date_input("Enter a future date for prediction (e.g., 2023-11-07):")
-
-if user_date:
-    # Create a dataframe with the user-provided date
-    future = pd.DataFrame({'ds': [pd.to_datetime(user_date)]})
-
-    # Make predictions for the user-provided date
-    forecast = model.predict(future)
-
-    # Display predicted price for the user-provided date
-    predicted_price = forecast['yhat'].values[0]
-    st.write(f'Predicted Price for {user_date}: Rs. {predicted_price:.2f}')
+if st.button("Predict the Price"):
+    if user_date:
+        # Create a dataframe with the user-provided date
+        future = pd.DataFrame({'ds': [pd.to_datetime(user_date)]})
+    
+        # Make predictions for the user-provided date
+        forecast = model.predict(future)
+    
+        # Display predicted price for the user-provided date
+        predicted_price = forecast['yhat'].values[0]
+        st.write(f'Predicted Price for {user_date}: Rs. {predicted_price:.2f}')
